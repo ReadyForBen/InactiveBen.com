@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Directory</title>
+    <link rel="icon" href="https://inactiveben.com/assets/favico.png" type="image/png">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden; /* Ensure content fits within the viewport */
+            background-color: #121212;
+            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", Icons16, sans-serif;
+            user-select: none; /* Disable text selection */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .directory-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Center the content vertically */
+            align-items: center;
+            flex-grow: 1; /* Allow this section to grow and fill available space */
+            overflow-y: auto; /* Adds scroll if needed within this section */
+        }
+
+        .directory-icon {
+            font-size: 48px; /* Size of the icon */
+            color: #a3a3a3; /* Updated icon color */
+            margin-bottom: 10px; /* Space below the icon */
+        }
+
+        .directory-title {
+            font-size: 24px; /* Reduced font size */
+            font-weight: bold;
+            color: #ffffff; /* Updated title color */
+            margin-bottom: 5px; /* Reduced margin */
+        }
+
+        .directory-description {
+            font-size: 14px;
+            color: #a3a3a3; /* Updated description color */
+            margin-bottom: 20px; /* Space below the description */
+            text-align: center;
+            max-width: 600px; /* Limit the width of the description */
+        }
+
+        .staff-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px; /* Reduced gap */
+            padding: 10px 0; /* Padding to add some space around the staff list */
+        }
+
+        .staff-card {
+            background-color: #1e1e1e;
+            border-radius: 8px;
+            padding: 15px; /* Reduced padding */
+            width: 240px; /* Reduced width */
+            text-align: center;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s;
+        }
+
+        .staff-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .staff-photo {
+            border-radius: 50%;
+            width: 80px; /* Reduced size */
+            height: 80px;
+            object-fit: cover;
+            margin-bottom: 10px; /* Reduced margin */
+        }
+
+        .staff-name {
+            font-size: 18px; /* Reduced font size */
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .staff-title {
+            font-size: 14px; /* Reduced font size */
+            color: #a3a3a3;
+            margin-bottom: 8px; /* Reduced margin */
+        }
+
+        .staff-description {
+            font-size: 12px; /* Reduced font size */
+            color: #cccccc;
+        }
+
+        footer {
+            width: 100%;
+            background-color: #181818;
+            padding: 10px 0; /* Reduced padding */
+            color: #a3a3a3;
+            border-top: 1px solid #333;
+            text-align: center;
+            font-size: 0.75rem; /* Reduced font size */
+            flex-shrink: 0; /* Prevent the footer from shrinking */
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .links {
+            display: flex;
+            gap: 10px; /* Reduced gap */
+        }
+
+        .links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-sizing: border-box;
+            background-color: transparent;
+            cursor: pointer;
+            user-select: none;
+            vertical-align: middle;
+            text-transform: none;
+            font-family: inherit;
+            font-weight: 500;
+            font-size: 0.75rem; /* Reduced font size */
+            line-height: 1.75;
+            min-width: 60px; /* Reduced width */
+            color: rgb(25, 118, 210);
+            outline: 0;
+            margin: 0;
+            text-decoration: none;
+            padding: 5px 10px; /* Reduced padding */
+            border-radius: 4px;
+            transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1), border-color 250ms cubic-bezier(0.4, 0, 0.2, 1), color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+            border-width: 1px;
+            border-style: solid;
+            border-color: rgba(25, 118, 210, 0.5);
+        }
+
+        .links a:hover {
+            background-color: rgba(25, 118, 210, 0.08);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="directory-wrapper">
+        <span class="material-icons-outlined directory-icon">auto_stories</span>
+        <div class="directory-title">Staff Directory</div>
+        <div class="directory-description">Meet the team that powers us. Yap yap yap...</div>
+        <div class="staff-list">
+            <!-- Example staff member -->
+            <div class="staff-card">
+                <img src="https://via.placeholder.com/100" alt="Staff Photo" class="staff-photo">
+                <div class="staff-name">John Doe</div>
+                <div class="staff-title">CEO</div>
+                <div class="staff-description">John is the visionary leader of our team, guiding the company with his expertise and experience.</div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="links">
+                <a href="/tos" class="button">Terms & Conditions</a>
+                <a href="/privacy" class="button">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
