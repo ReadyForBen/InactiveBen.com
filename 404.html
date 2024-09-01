@@ -26,8 +26,7 @@
             z-index: 1000;
             width: fit-content;
             max-width: 90%;
-            opacity: 0; /* Start invisible */
-            animation: appear 1s forwards 1s; /* Delay the appearance */
+            visibility: hidden; /* Start hidden */
         }
 
         .toast {
@@ -39,38 +38,21 @@
             padding: 15px 30px;  /* Increased padding for better fit */
             border-radius: 12px;  /* More rounded corners */
             box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
-            animation: slide-in 0.5s forwards; /* Animate in */
+            opacity: 0; /* Start invisible */
+            transform: translateY(-20px);
         }
 
-        @keyframes slide-in {
-            from {
-                opacity: 0;
-                transform: translate(-50%, -20px);
-            }
-            to {
-                opacity: 1;
-                transform: translate(-50%, 0);
-            }
+        .toast.show {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.5s ease-out;
         }
 
-        @keyframes slide-out {
-            from {
-                opacity: 1;
-                transform: translate(-50%, 0);
-            }
-            to {
-                opacity: 0;
-                transform: translate(-50%, -20px);
-            }
-        }
-
-        @keyframes appear {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+        .toast.hide {
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.5s ease-in;
         }
 
         .toast-body {
@@ -252,10 +234,18 @@
     </footer>
 
     <script>
+        function showToast() {
+            const toast = document.querySelector('.toast');
+            if (toast) {
+                toast.classList.add('show');
+            }
+        }
+
         function closeToast() {
             const toast = document.querySelector('.toast');
             if (toast) {
-                toast.style.animation = 'slide-out 0.5s forwards';
+                toast.classList.remove('show');
+                toast.classList.add('hide');
                 setTimeout(() => {
                     const toastContainer = document.getElementById('toastContainer');
                     if (toastContainer) {
@@ -268,8 +258,11 @@
         // Automatically show the toast after a delay and close it after 10 seconds
         window.onload = function() {
             setTimeout(() => {
-                closeToast();
-            }, 10000); // Close after 10 seconds
+                showToast();
+                setTimeout(() => {
+                    closeToast();
+                }, 10000); // Close after 10 seconds
+            }, 1000); // Delay the toast appearance by 1 second to ensure proper centering
         };
     </script>
 </body>
