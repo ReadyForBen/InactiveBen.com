@@ -1,4 +1,7 @@
 > [!CAUTION]
-> **This service is used to push live updates to InactiveBen's projects. Commits may take up to 5 minutes to register.**
+> This repository is solely used to store directory information for in-game badges and other related items.
 > <div>
+
+Usage
+This repository is used internally by the game to fetch and store information related to in-game functionalities. It should not be cloned or forked for development purposes.
 
