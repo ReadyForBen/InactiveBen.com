@@ -26,6 +26,8 @@
             z-index: 1000;
             width: fit-content;
             max-width: 90%;
+            opacity: 0; /* Start invisible */
+            animation: appear 1s forwards 1s; /* Delay the appearance */
         }
 
         .toast {
@@ -37,7 +39,7 @@
             padding: 15px 30px;  /* Increased padding for better fit */
             border-radius: 12px;  /* More rounded corners */
             box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
-            animation: slide-in 0.5s ease-out;
+            animation: slide-in 0.5s forwards; /* Animate in */
         }
 
         @keyframes slide-in {
@@ -48,6 +50,26 @@
             to {
                 opacity: 1;
                 transform: translate(-50%, 0);
+            }
+        }
+
+        @keyframes slide-out {
+            from {
+                opacity: 1;
+                transform: translate(-50%, 0);
+            }
+            to {
+                opacity: 0;
+                transform: translate(-50%, -20px);
+            }
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
             }
         }
 
@@ -231,11 +253,24 @@
 
     <script>
         function closeToast() {
-            document.getElementById('toastContainer').style.display = 'none';
+            const toast = document.querySelector('.toast');
+            if (toast) {
+                toast.style.animation = 'slide-out 0.5s forwards';
+                setTimeout(() => {
+                    const toastContainer = document.getElementById('toastContainer');
+                    if (toastContainer) {
+                        toastContainer.style.display = 'none';
+                    }
+                }, 500); // Wait for the close animation to finish before hiding
+            }
         }
 
-        // Automatically close the toast after 10 seconds
-        setTimeout(closeToast, 10000);
+        // Automatically show the toast after a delay and close it after 10 seconds
+        window.onload = function() {
+            setTimeout(() => {
+                closeToast();
+            }, 10000); // Close after 10 seconds
+        };
     </script>
 </body>
 </html>
