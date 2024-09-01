@@ -79,6 +79,60 @@
             background-color: rgba(25, 118, 210, 0.8);
         }
 
+        .toast-container {
+            position: fixed;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            width: fit-content;
+            max-width: 90%;
+            visibility: hidden; /* Start hidden */
+        }
+
+        .toast {
+            background-color: rgb(220, 53, 69); /* Red for error */
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 30px;
+            border-radius: 12px;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        .toast.show {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.5s ease-out;
+        }
+
+        .toast.hide {
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.5s ease-in;
+        }
+
+        .toast-body {
+            display: flex;
+            align-items: center;
+        }
+
+        .toast-body .material-icons {
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .toast-body a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            vertical-align: middle;
+            line-height: 1.2;
+        }
     </style>
 </head>
 <body>
@@ -91,13 +145,33 @@
         <button class="button" onclick="checkPassword()">Submit</button>
     </div>
 
+    <div class="toast-container" id="toastContainer">
+        <div class="toast">
+            <div class="toast-body">
+                <i class="material-icons">error_outline</i> 
+                Incorrect password. Please try again.
+            </div>
+        </div>
+    </div>
+
     <script>
         function checkPassword() {
             var password = document.getElementById("passwordInput").value;
             if (password === "password") {
                 window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
             } else {
-                alert("Incorrect password. Please try again.");
+                showToast();
+            }
+        }
+
+        function showToast() {
+            const toast = document.querySelector('.toast');
+            if (toast) {
+                toast.classList.add('show');
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                    toast.classList.add('hide');
+                }, 3000); // Display the toast for 3 seconds
             }
         }
     </script>
