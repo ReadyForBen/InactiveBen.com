@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,7 +5,6 @@
     <title>Privacy Policy</title>
     <link rel="icon" href="https://inactiveben.com/assets/favico.png" type="image/png">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/marked@4.0.12/marked.min.js"></script>
     <style>
         body, html {
             margin: 0;
@@ -17,20 +15,18 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", Icons16, sans-serif;
             user-select: none;
             overflow-y: auto;
-        }
-
-        .md-content {
             display: flex;
+            align-items: center;
             justify-content: center;
-            padding: 20px;
+            flex-direction: column;
         }
 
-        .md-content__inner {
+        .container-lg {
             max-width: 800px;
-            width: 100%;
-            background-color: #181818;
             padding: 20px;
+            background-color: #181818;
             border-radius: 8px;
+            text-align: center;
         }
 
         h1, h2, h3, h4, h5, h6 {
@@ -51,133 +47,126 @@
             text-decoration: underline;
         }
 
-        .md-content__button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
+        .anchor {
             color: #03a9f4;
             text-decoration: none;
-            margin-right: 10px;
-            transition: color 0.3s ease;
+            margin-left: 5px;
         }
 
-        .md-content__button:hover {
+        .anchor:hover {
             color: #ffffff;
         }
 
-        .md-icon {
-            width: 24px;
-            height: 24px;
-            fill: currentColor;
-            margin-right: 5px;
+        code {
+            background-color: #282828;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #f1f1f1;
         }
 
-        .toast-container {
+        ul {
+            margin-left: 20px;
+        }
+
+        .markdown-heading {
+            margin-top: 30px;
+        }
+
+        .markdown-body {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .heading-element {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        .octicon-link {
+            fill: #a3a3a3;
+        }
+
+        .octicon-link:hover {
+            fill: #ffffff;
+        }
+
+        .Box-sc-g0xbh4-0 {
+            padding: 20px;
+            background-color: #181818;
+            border-radius: 8px;
+        }
+
+        /* Loading screen styles */
+        #loading {
             position: fixed;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1000;
-            width: fit-content;
-            max-width: 90%;
-            visibility: hidden; /* Start hidden */
-        }
-
-        .toast {
-            background-color: rgb(25, 118, 210);
-            color: white;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #121212;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 15px 30px;
-            border-radius: 12px;
-            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 9999;
+        }
+
+        .loading-circle {
+            border: 8px solid #121212; /* Light grey background */
+            border-top: 8px solid #03a9f4; /* Blue color for the circle */
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        #loading.hidden {
             opacity: 0;
-            transform: translateY(-20px);
-        }
-
-        .toast.show {
-            visibility: visible;
-            opacity: 1;
-            transform: translateY(0);
-            transition: all 0.5s ease-out;
-        }
-
-        .toast.hide {
-            opacity: 0;
-            transform: translateY(-20px);
-            transition: all 0.5s ease-in;
-        }
-
-        .toast-body {
-            display: flex;
-            align-items: center;
-        }
-
-        .toast-body .material-icons {
-            margin-right: 10px;
-            vertical-align: middle;
-        }
-
-        .toast-body a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            vertical-align: middle;
-            line-height: 1.2;
+            visibility: hidden;
+            transition: opacity 0.5s, visibility 0.5s;
         }
     </style>
 </head>
 <body>
-
-    <div class="toast-container" id="toastContainer">
-        <div class="toast show">
-            <div class="toast-body">
-                <i class="material-icons">announcement</i> 
-                <a href="https://discord.gg/yourdiscordlink" target="_blank">Join our community on Discord!</a>
-            </div>
-        </div>
+    <div id="loading">
+        <div class="loading-circle"></div>
     </div>
 
-    <div class="md-content">
-        <article class="md-content__inner md-typeset" id="content">
-            <!-- The Markdown content will be loaded here -->
+    <div class="container-lg">
+        <article class="markdown-body entry-content" itemprop="text">
+            <div class="markdown-heading" dir="auto">
+                <h1 tabindex="-1" class="heading-element" dir="auto">Privacy Policy</h1>
+                <a id="user-content-privacy" class="anchor" aria-label="Permalink: Privacy" href="#privacy">
+                    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true">
+                        <path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path>
+                    </svg>
+                </a>
+            </div>
+
+            <p dir="auto">For detailed information about the privacy practices of the Discord Tickets Bot, please refer to the privacy policy provided by the hosting service. You can find it at <a href="https://discordtickets.app/privacy/">https://discordtickets.app/privacy/</a>.</p>
+
+            <p dir="auto">This privacy policy includes information about:</p>
+            <ul dir="auto">
+                <li>The content of messages sent in channels accessible by the Discord application user</li>
+                <li>Data storage practices, including encryption and security measures</li>
+                <li>How data provided by guild administrators is handled</li>
+                <li>Any additional data protection measures and policies</li>
+            </ul>
+
+            <p dir="auto">If you have any questions or concerns about your data or privacy, please review the privacy policy at the provided link or contact me via <a href="mailto:ben@inactiveben.com">ben@inactiveben.com</a>.</p>
         </article>
     </div>
 
     <script>
-        async function loadMarkdown() {
-            try {
-                const response = await fetch('https://inactiveben.com/backend/privacy.md');
-                if (!response.ok) {
-                    console.error('Network response was not ok:', response.statusText);
-                    return;
-                }
-                const text = await response.text();
-                const contentElement = document.getElementById('content');
-                contentElement.innerHTML = marked(text);
-            } catch (error) {
-                console.error('There was a problem with the fetch operation:', error);
-            }
-        }
-
-        function showToast() {
-            const toast = document.querySelector('.toast');
-            if (toast) {
-                toast.classList.add('show');
-                setTimeout(() => {
-                    toast.classList.remove('show');
-                    toast.classList.add('hide');
-                }, 10000); // Display the toast for 10 seconds
-            }
-        }
-
-        window.onload = function() {
-            loadMarkdown();
-            setTimeout(() => {
-                showToast();
-            }, 2000); // Delay the toast appearance by 2 seconds
-        };
+        // Hide the loading screen after 3 seconds
+        setTimeout(() => {
+            document.getElementById('loading').classList.add('hidden');
+        }, 3000);
     </script>
 </body>
 </html>
