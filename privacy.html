@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy</title>
+    <link rel="icon" href="https://inactiveben.com/assets/favico.png" type="image/png">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: #121212;
+            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", Icons16, sans-serif;
+            user-select: none;
+            overflow-y: auto;
+        }
+
+        .content-wrapper {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1, h2, h3 {
+            color: #ffffff;
+        }
+
+        p, li {
+            color: #a3a3a3;
+            line-height: 1.6;
+        }
+
+        a {
+            color: #03a9f4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .toast-container {
+            position: fixed;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            width: fit-content;
+            max-width: 90%;
+            visibility: hidden; /* Start hidden */
+        }
+
+        .toast {
+            background-color: rgb(25, 118, 210);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 30px;
+            border-radius: 12px;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        .toast.show {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.5s ease-out;
+        }
+
+        .toast.hide {
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.5s ease-in;
+        }
+
+        .toast-body {
+            display: flex;
+            align-items: center;
+        }
+
+        .toast-body .material-icons {
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .toast-body a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            vertical-align: middle;
+            line-height: 1.2;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="toast-container" id="toastContainer">
+        <div class="toast">
+            <div class="toast-body">
+                <i class="material-icons">announcement</i> 
+                <a href="https://discord.gg/yourdiscordlink" target="_blank">Join our community on Discord!</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-wrapper" id="content">
+        <!-- The Markdown content will be loaded here -->
+    </div>
+
+    <script>
+        function loadMarkdown() {
+            fetch('https://inactiveben.com/backend/privacy')
+                .then(response => response.text())
+                .then(text => {
+                    const contentElement = document.getElementById('content');
+                    contentElement.innerHTML = marked(text);
+                })
+                .catch(error => {
+                    console.error('Error fetching the markdown file:', error);
+                });
+        }
+
+        function showToast() {
+            const toast = document.querySelector('.toast');
+            if (toast) {
+                toast.classList.add('show');
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                    toast.classList.add('hide');
+                }, 10000); // Display the toast for 10 seconds
+            }
+        }
+
+        window.onload = function() {
+            loadMarkdown();
+            setTimeout(() => {
+                showToast();
+            }, 2000); // Delay the toast appearance by 2 seconds
+        };
+    </script>
+
+</body>
+</html>
