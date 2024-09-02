@@ -19,13 +19,21 @@
             overflow-y: auto;
         }
 
-        .content-wrapper {
+        .md-content {
+            display: flex;
+            justify-content: center;
             padding: 20px;
-            max-width: 800px;
-            margin: 0 auto;
         }
 
-        h1, h2, h3 {
+        .md-content__inner {
+            max-width: 800px;
+            width: 100%;
+            background-color: #181818;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
             color: #ffffff;
         }
 
@@ -41,6 +49,27 @@
 
         a:hover {
             text-decoration: underline;
+        }
+
+        .md-content__button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #03a9f4;
+            text-decoration: none;
+            margin-right: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .md-content__button:hover {
+            color: #ffffff;
+        }
+
+        .md-icon {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+            margin-right: 5px;
         }
 
         .toast-container {
@@ -110,8 +139,10 @@
         </div>
     </div>
 
-    <div class="content-wrapper" id="content">
-        <!-- The Markdown content will be loaded here -->
+    <div class="md-content">
+        <article class="md-content__inner md-typeset" id="content">
+            <!-- The Markdown content will be loaded here -->
+        </article>
     </div>
 
     <script>
