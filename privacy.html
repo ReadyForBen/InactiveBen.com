@@ -115,16 +115,19 @@
     </div>
 
     <script>
-        function loadMarkdown() {
-            fetch('https://inactiveben.com/backend/privacy.md')
-                .then(response => response.text())
-                .then(text => {
-                    const contentElement = document.getElementById('content');
-                    contentElement.innerHTML = marked(text);
-                })
-                .catch(error => {
-                    console.error('Error fetching the markdown file:', error);
-                });
+        async function loadMarkdown() {
+            try {
+                const response = await fetch('https://inactiveben.com/backend/privacy.md');
+                if (!response.ok) {
+                    console.error('Network response was not ok:', response.statusText);
+                    return;
+                }
+                const text = await response.text();
+                const contentElement = document.getElementById('content');
+                contentElement.innerHTML = marked(text);
+            } catch (error) {
+                console.error('There was a problem with the fetch operation:', error);
+            }
         }
 
         function showToast() {
