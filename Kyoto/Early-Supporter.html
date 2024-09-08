@@ -44,12 +44,13 @@
 
         .button-container {
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             gap: 20px;
             margin-bottom: 40px;
         }
 
         .button {
+            display: inline-block;
             background-color: #FA4463;
             color: #ffffff;
             border: none;
@@ -60,24 +61,15 @@
             text-transform: none;
             cursor: pointer;
             transition: background-color 0.3s ease;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
             font-family: inherit;
+            width: 200px;
+            text-align: center;
+            margin: 0 auto;
+            text-decoration: none;
         }
 
         .button:hover {
             background-color: #e63e58;
-        }
-
-        .button-text-container {
-            display: inline-block;
-        }
-
-        .button-text {
-            font-size: 1em;
-            font-weight: 500;
-            text-transform: none;
         }
 
         footer {
@@ -91,7 +83,6 @@
         }
 
     </style>
-    <script async src="https://js.stripe.com/v3/buy-button.js"></script>
 </head>
 
 <body>
@@ -100,17 +91,14 @@
         <p>Support Kyoto and get exclusive benefits as an early supporter! Choose your preferred option to support us and secure your place in the Kyoto community.</p>
 
         <div class="button-container">
-            <!-- Stripe Buy Button -->
-            <stripe-buy-button 
-                buy-button-id="buy_btn_1Pwnj7P105sIHTUeVrpUmAbT" 
-                publishable-key="pk_live_51PLRywP105sIHTUegvm6osC1fCdYPJ77Jed66Ls39hO0TwRhSY8FMAbDj9tjPJ5Ue0F8EBs0kiMPuUJftao9GkOt00ptO4Z4NS">
-            </stripe-buy-button>
+            <!-- Robux Gamepass Button -->
+            <a href="https://www.roblox.com/catalog/18891243227/Beta-Tester" class="button" target="_blank">
+                R$ 1,000
+            </a>
 
-            <!-- Robux Buy Button -->
-            <a href="https://www.roblox.com/catalog/18891243227/Beta-Tester" class="button">
-                <div class="button-text-container">
-                    <span class="button-text">Unlock Now</span>
-                </div>
+            <!-- Stripe Donation Button -->
+            <a href="https://donate.stripe.com/8wMcNefEO0Ip7g4eV0" class="button" target="_blank">
+                $20 USD
             </a>
         </div>
 
