@@ -56,12 +56,28 @@
             padding: 15px 30px;
             border-radius: 8px;
             font-size: 1.1em;
+            font-weight: 500;
+            text-transform: none;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            font-family: inherit;
         }
 
         .button:hover {
             background-color: #e63e58;
+        }
+
+        .button-text-container {
+            display: inline-block;
+        }
+
+        .button-text {
+            font-size: 1em;
+            font-weight: 500;
+            text-transform: none;
         }
 
         footer {
@@ -73,6 +89,7 @@
             text-align: center;
             font-size: 0.875rem;
         }
+
     </style>
     <script async src="https://js.stripe.com/v3/buy-button.js"></script>
 </head>
@@ -80,15 +97,21 @@
 <body>
     <div class="container">
         <h1>Early Supporter</h1>
-        <p>Support Kyoto and get exclusive benefits as an early supporter! Purchase the Early Supporter role to help us grow
-            and secure your place in the Kyoto community.</p>
+        <p>Support Kyoto and get exclusive benefits as an early supporter! Choose your preferred option to support us and secure your place in the Kyoto community.</p>
 
         <div class="button-container">
-            <!-- Stripe Button -->
+            <!-- Stripe Buy Button -->
             <stripe-buy-button 
                 buy-button-id="buy_btn_1Pwnj7P105sIHTUeVrpUmAbT" 
                 publishable-key="pk_live_51PLRywP105sIHTUegvm6osC1fCdYPJ77Jed66Ls39hO0TwRhSY8FMAbDj9tjPJ5Ue0F8EBs0kiMPuUJftao9GkOt00ptO4Z4NS">
             </stripe-buy-button>
+
+            <!-- Robux Buy Button -->
+            <a href="https://www.roblox.com/catalog/18891243227/Beta-Tester" class="button">
+                <div class="button-text-container">
+                    <span class="button-text">Unlock Now</span>
+                </div>
+            </a>
         </div>
 
         <footer>
