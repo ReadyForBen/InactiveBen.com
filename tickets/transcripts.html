@@ -87,6 +87,9 @@
                         const chatDisplay = document.getElementById('chatDisplay');
                         chatDisplay.innerHTML = ''; // Clear any existing content
 
+                        // Sort messages by timestamp (oldest first)
+                        messages.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+
                         messages.forEach(msg => {
                             const messageElement = document.createElement('div');
                             messageElement.className = 'message ' + (msg.author === 'You' ? 'sent' : 'received');
