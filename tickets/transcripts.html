@@ -31,9 +31,6 @@
             text-align: center;
             color: #333;
         }
-        input[type="file"] {
-            margin-bottom: 20px;
-        }
         .chat {
             flex: 1;
             overflow-y: auto;
@@ -70,49 +67,53 @@
 <body>
     <div class="container">
         <h1>Chat Viewer</h1>
-        <input type="file" id="fileInput" />
         <div class="chat" id="chatDisplay">
-            Upload a JSON file to view the chat conversation.
+            Loading chat conversation...
         </div>
     </div>
 
     <script>
-        document.getElementById('fileInput').addEventListener('change', function(event) {
-            const file = event.target.files[0];
-            if (file && file.type === 'application/json') {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    try {
-                        const messages = JSON.parse(e.target.result);
-                        const chatDisplay = document.getElementById('chatDisplay');
-                        chatDisplay.innerHTML = ''; // Clear any existing content
+        function parseJsonData(data) {
+            try {
+                const messages = JSON.parse(data);
+                const chatDisplay = document.getElementById('chatDisplay');
+                chatDisplay.innerHTML = ''; // Clear any existing content
 
-                        // Sort messages by timestamp (oldest first)
-                        messages.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+                // Sort messages by timestamp (oldest first)
+                messages.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
 
-                        messages.forEach(msg => {
-                            const messageElement = document.createElement('div');
-                            messageElement.className = 'message ' + (msg.author === 'You' ? 'sent' : 'received');
+                messages.forEach(msg => {
+                    const messageElement = document.createElement('div');
+                    messageElement.className = 'message ' + (msg.author === 'You' ? 'sent' : 'received');
 
-                            const timestamp = new Date(msg.timestamp).toLocaleString();
-                            messageElement.innerHTML = `
-                                <span class="timestamp">${timestamp}</span>
-                                <span class="username">${msg.author}:</span>
-                                <p>${msg.content}</p>
-                            `;
+                    const timestamp = new Date(msg.timestamp).toLocaleString();
+                    messageElement.innerHTML = `
+                        <span class="timestamp">${timestamp}</span>
+                        <span class="username">${msg.author}:</span>
+                        <p>${msg.content}</p>
+                    `;
 
-                            chatDisplay.appendChild(messageElement);
-                        });
+                    chatDisplay.appendChild(messageElement);
+                });
 
-                        // Scroll to the bottom
-                        chatDisplay.scrollTop = chatDisplay.scrollHeight;
-                    } catch (err) {
-                        document.getElementById('chatDisplay').textContent = 'Error parsing JSON: ' + err.message;
-                    }
-                };
-                reader.readAsText(file);
+                // Scroll to the bottom
+                chatDisplay.scrollTop = chatDisplay.scrollHeight;
+            } catch (err) {
+                document.getElementById('chatDisplay').textContent = 'Error parsing JSON: ' + err.message;
+            }
+        }
+
+        function getUrlParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const jsonData = getUrlParameter('data');
+            if (jsonData) {
+                parseJsonData(decodeURIComponent(jsonData));
             } else {
-                document.getElementById('chatDisplay').textContent = 'Please upload a valid JSON file.';
+                document.getElementById('chatDisplay').textContent = 'No chat data provided in URL.';
             }
         });
     </script>
