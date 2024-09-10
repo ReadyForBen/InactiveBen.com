@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JSON Viewer</title>
+    <title>Chat Viewer</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -23,6 +23,9 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
             overflow: auto;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
         }
         h1 {
             text-align: center;
@@ -31,21 +34,46 @@
         input[type="file"] {
             margin-bottom: 20px;
         }
-        pre {
-            background: #333;
-            color: #f4f4f4;
-            padding: 20px;
+        .chat {
+            flex: 1;
+            overflow-y: auto;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+        }
+        .message {
+            margin-bottom: 10px;
+            padding: 10px;
             border-radius: 8px;
-            white-space: pre-wrap;
-            word-wrap: break-word;
+            background-color: #f1f1f1;
+            max-width: 75%;
+            position: relative;
+        }
+        .message.sent {
+            background-color: #e1ffe1;
+            align-self: flex-end;
+        }
+        .message.received {
+            background-color: #f1f1f1;
+            align-self: flex-start;
+        }
+        .timestamp {
+            font-size: 0.8em;
+            color: #999;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .username {
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>JSON Viewer</h1>
+        <h1>Chat Viewer</h1>
         <input type="file" id="fileInput" />
-        <pre id="jsonDisplay">Upload a JSON file to view its contents.</pre>
+        <div class="chat" id="chatDisplay">
+            Upload a JSON file to view the chat conversation.
+        </div>
     </div>
 
     <script>
@@ -55,16 +83,33 @@
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     try {
-                        const json = JSON.parse(e.target.result);
-                        const formattedJson = JSON.stringify(json, null, 2);
-                        document.getElementById('jsonDisplay').textContent = formattedJson;
+                        const messages = JSON.parse(e.target.result);
+                        const chatDisplay = document.getElementById('chatDisplay');
+                        chatDisplay.innerHTML = ''; // Clear any existing content
+
+                        messages.forEach(msg => {
+                            const messageElement = document.createElement('div');
+                            messageElement.className = 'message ' + (msg.author === 'You' ? 'sent' : 'received');
+
+                            const timestamp = new Date(msg.timestamp).toLocaleString();
+                            messageElement.innerHTML = `
+                                <span class="timestamp">${timestamp}</span>
+                                <span class="username">${msg.author}:</span>
+                                <p>${msg.content}</p>
+                            `;
+
+                            chatDisplay.appendChild(messageElement);
+                        });
+
+                        // Scroll to the bottom
+                        chatDisplay.scrollTop = chatDisplay.scrollHeight;
                     } catch (err) {
-                        document.getElementById('jsonDisplay').textContent = 'Error parsing JSON: ' + err.message;
+                        document.getElementById('chatDisplay').textContent = 'Error parsing JSON: ' + err.message;
                     }
                 };
                 reader.readAsText(file);
             } else {
-                document.getElementById('jsonDisplay').textContent = 'Please upload a valid JSON file.';
+                document.getElementById('chatDisplay').textContent = 'Please upload a valid JSON file.';
             }
         });
     </script>
