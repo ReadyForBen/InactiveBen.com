@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Load External 404 Page</title>
+    <script>
+        // Fetch and load the raw HTML content from GitHub
+        async function loadExternalPage() {
+            const url = 'https://raw.githubusercontent.com/ReadyForBen/InactiveBen.com/main/404.html'; // Raw GitHub link to your HTML
+            try {
+                const response = await fetch(url);
+                const text = await response.text();
+                document.getElementById('external-content').innerHTML = text;
+            } catch (error) {
+                console.error('Error loading external page:', error);
+            }
+        }
+
+        window.onload = loadExternalPage; // Load the external page when the window loads
+    </script>
+</head>
+<body>
+    <h1>Loading External Page...</h1>
+    <div id="external-content"></div> <!-- External content will be injected here -->
+</body>
+</html>
