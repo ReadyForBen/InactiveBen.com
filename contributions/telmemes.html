@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://uptime.betterstack.com/widgets/announcement.js" data-id="197802" async="async" type="text/javascript"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Warranty Countdown</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap');
+
+    body {
+      background-color: var(--color--background-main, #08090A);
+      color: var(--color--text-sub, #ffffffb3);
+      font-family: 'Inter', sans-serif;
+      letter-spacing: -.01em;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .content {
+      text-align: center;
+    }
+
+    h1 {
+      color: var(--color--text-main, white);
+      font-size: 3.5rem;
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -.015em;
+      margin: 0;
+    }
+
+    .description {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: var(--color--text-sub, #ffffffb3);
+      line-height: 1.3;
+      font-weight: 400;
+    }
+
+    .countdown {
+      font-size: 1.5rem;
+      margin-top: 1rem;
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .button-container {
+      margin-top: 1rem;
+    }
+
+    .button {
+      padding: 0.6rem 1.75rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #08090A;
+      background-color: white;
+      border: none;
+      border-radius: 6px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #e5e5e5cb;
+    }
+
+    .status-badge {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      z-index: 1000;
+    }
+
+    /* Benji.Services section at the bottom-right */
+    .benji-services {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      font-family: 'Gochi Hand', cursive;
+      font-size: 1rem;
+      color: #ffffffb3;
+    }
+
+    .benji-services a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .benji-services a:hover {
+      text-decoration: underline;
+    }
+  </style>
+  <script>
+    function updateCountdown() {
+      const today = new Date();
+      const expiryDate = new Date('2024-10-25T00:00:00'); // Set time to midnight on the expiration date
+      const timeDiff = expiryDate - today;
+
+      const countdownElement = document.getElementById('countdown');
+      const descriptionElement = document.querySelector('.description');
+
+      if (timeDiff <= 0) {
+        countdownElement.textContent = 'Your warranty has expired.';
+        descriptionElement.innerHTML = `Sorry, your warranty has expired and you are no longer eligible for fixes as per the agreement you agreed to at checkout. Feel free to contact us if you would like to commission us again!<br>
+        Claim ID: pm_1Q8QhEP105sIHTUe4rUKAmGd<br>`;
+        return;
+      }
+
+      const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+      countdownElement.textContent = 
+        `Your warranty expires in ${days} days, ${hours} hours, ${minutes} minutes, and ${seconds} seconds.`;
+      
+      descriptionElement.innerHTML = 
+        `You have ${days} days, ${hours} hours, ${minutes} minutes, and ${seconds} seconds for fixes on your commission. We are happy to fix any issues up to 10/25/2024 as per the customer agreement.<br>
+        Claim ID: pm_1Q8QhEP105sIHTUe4rUKAmGd<br>`;
+    }
+
+    // Update countdown on page load and refresh every second
+    window.onload = function() {
+      updateCountdown();
+      setInterval(updateCountdown, 1000); // Refresh countdown every second
+    };
+  </script>
+</head>
+<body>
+  <div class="content">
+    <h1></h1>
+    <div id="countdown" class="countdown"></div>
+    <div class="description"></div>
+    <div class="status-badge">
+      <iframe src="https://status.realmblock.co/badge?theme=dark" width="250" height="30" frameborder="0" scrolling="no"></iframe>
+    </div>
+  </div>
+
+  <!-- Benji.Services branding -->
+  <div class="benji-services">
+    Made with ❤️ by <a href="https://benji.services" target="_blank">Benji.Services</a>
+  </div>
+</body>
+</html>
