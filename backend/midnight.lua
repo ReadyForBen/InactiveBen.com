@@ -1,20 +1,21 @@
--- Function to get the remaining time until midnight CST
-local function getTimeUntilMidnight()
-    local success, response = pcall(function()
-        return game:HttpGet("https://inactiveben.com/backend/midnight.lua")
-    end)
+-- midnight.lua
 
-    if success then
-        -- Check if the response is valid and not empty
-        if response and response:match("%d+") then
-            -- Assume response is something like "6 hours 30 minutes"
-            return response:gsub("%s+", "")  -- Clean whitespace
-        else
-            return "Received an invalid time format."  -- Handle unexpected response
-        end
-    else
-        return "Could not fetch time until midnight."  -- Fallback message
+-- Function to calculate remaining time until midnight CST
+local function getTimeUntilMidnight()
+    local currentTime = os.date("*t")  -- Get current time
+    local midnight = {hour = 24, min = 0}  -- Midnight is at 00:00
+
+    -- Calculate remaining time until midnight
+    local remainingHours = midnight.hour - currentTime.hour
+    local remainingMinutes = midnight.min - currentTime.min
+
+    if remainingMinutes < 0 then
+        remainingHours = remainingHours - 1
+        remainingMinutes = remainingMinutes + 60
     end
+
+    return string.format("%d hours %d minutes", remainingHours, remainingMinutes)
 end
 
-return getTimeUntilMidnight
+-- Return the time remaining until midnight
+return getTimeUntilMidnight()
