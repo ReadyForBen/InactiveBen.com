@@ -1,14 +1,33 @@
 {
-        "nextEvent": {
-            "time": "5:55 AM CST",
-            "timestamp": 1734522900, 
-            "type": "Training" 
+    "nextEvent": {
+        "time": "5:55 AM CST",
+        "timestamp": 1734522900,
+        "type": "Training",
+        "host": "AfterXHour",
+        "location": "Training Center",
+        "duration": 3600,
+        "requiredRank": "Trainee+"
+    },
+    "upcomingEvents": [
+        {
+            "time": "3:00 PM EST",
+            "timestamp": 1734562800,
+            "type": "Training",
+            "host": "Benson",
+            "location": "Training Center",
+            "duration": 3600,
+            "requiredRank": "Trainee+"
         },
-        "upcomingEvents": [  
-            {
-                "time": "3:00 PM EST",
-                "timestamp": 1234599999,
-                "type": "Training"
-            }
-        ]
-    }
+        {
+            "time": "8:00 PM EST",
+            "timestamp": 1734581400,
+            "type": "Evaluation",
+            "host": "AfterXHour",
+            "location": "Evaluation Center",
+            "duration": 7200,
+            "requiredRank": "Junior Trainee+"
+        }
+    ],
+    "lastUpdated": 1734518400,
+    "timezone": "America/Chicago"
+}
