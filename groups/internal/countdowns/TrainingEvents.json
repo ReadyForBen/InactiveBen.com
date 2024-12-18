@@ -1,0 +1,14 @@
+{
+        "nextEvent": {
+            "time": "12:30 AM EST",
+            "timestamp": 1734518700, // Unix timestamp in seconds
+            "type": "Training"  // Optional event type
+        },
+        "upcomingEvents": [  // Optional array of future events
+            {
+                "time": "3:00 PM EST",
+                "timestamp": 1234599999,
+                "type": "Training"
+            }
+        ]
+    }
